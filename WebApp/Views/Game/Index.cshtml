@@ -1,0 +1,44 @@
+﻿
+@model WebApp.Models.GameBoard
+
+<h1>2048 Game</h1>
+
+<div id="game-container">
+    <div class="board">
+        @for (int row = 0; row < Model.Board.Count; row++)
+        {
+            <div class="row">
+                @for (int col = 0; col < Model.Board[row].Count; col++)
+                {
+                    <div class="cell">
+                        @{
+                            int tileValue = Model.Board[row][col];
+                            if (tileValue > 0)
+                            {
+                                <div class="tile tile-@tileValue">
+                                    @tileValue
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<div class="buttons">
+    <button class="btn">New Game</button>
+    <button class="btn" onclick="move('up')">Up</button>
+    <button class="btn" onclick="move('down')">Down</button>
+    <button class="btn" onclick="move('left')">Left</button>
+    <button class="btn" onclick="move('right')">Right</button>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/game.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    <script src="~/js/game.js" asp-append-version="true"></script>
+}
